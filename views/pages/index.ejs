@@ -7,26 +7,25 @@
 </head>
 
 <body>
-
+    <% if(keyword !== ''){%>
     <nav class="navbar navbar-expand">
-        <a class="navbar-brand" href="#">Search </a>      
+        <a class="navbar-brand" href="/"><img src="/images/animation.gif" class="mx-auto d-block" alt="Responsive image">  </a>      
         <div class="collapse navbar-collapse">
             <div class="col-sm-12">
                 <form class="form-inline" id="search_from" action="/search">
                     <div class="input-group stylish-input-group col-12 col-md-8 col-xl-4">
-                        <input type="text" class="form-control" name="keyword" value="<%=keyword%>" placeholder="Search">
-                        <span class="input-group-addon ">
-                            <button type="button" onclick="search()" class="btn btn-outline-secondary">
+                        <input type="text" class="form-control form-control-lg" name="keyword" value="<%=keyword%>" placeholder="Search">
+                        <span class="input-group-addon">
+                            <button type="button" onclick="search()" class="btn btn-lg">
                                 <i class="fas fa-search"></i>
                             </button>
                         </span>
-                    </div>
+                    </div>                   
                     <input type="hidden" name="current_page" value="<%=current_page%>" id="currentPage"/>
                 </form>
             </div>
         </div>
-    </nav>
-       
+    </nav>   
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-6 col-md-offset-1">
@@ -56,9 +55,9 @@
                    
                     </ul>
                     <% } else{ %>             
-                        <div class="no-results">
-                           <p style="margin-top:1em">Suggestions:</p>
-                           <ul style="margin-left:1.3em;margin-bottom:2em"><li>Make sure that all words are spelled correctly.</li><li>Try different keywords.</li><li>Try more general keywords.</li></ul>
+                        <div class="no-results note note-info">
+                           <h3 style="margin-top:1em">Suggestions:</h3>
+                           <ul class="" style="margin-left:1.3em;margin-bottom:2em"><li>Make sure that all words are spelled correctly.</li><li>Try different keywords.</li><li>Try more general keywords.</li></ul>
                         </div>      
                     <% } %>
                 </div>
@@ -86,6 +85,27 @@
             </div>
         </div>
     </div>
+    <% } else{%>
+
+        <div class="banner-page ">
+            <div class="d-flex col-md-12 justify-content-center ">  
+                <div class="flex-column col-md-5">
+                    <div class="p-2 bd-highlight text-center" >
+                        <img src="/images/animation.gif" class="img-fluid mx-auto d-block" alt="Responsive image"> 
+                    </div>       
+                    
+                    <div class="p-2 bd-highlight ">
+                        <form class="form-inline" id="search_from" action="/search">                           
+                            <div class="form-group col-12">
+                                <input type="text" class="form-control col-12 form-control-lg" name="keyword" value="<%=keyword%>" placeholder="Search">
+                            </div>
+                            <input type="hidden" name="current_page" value="<%=current_page%>" id="currentPage"/>
+                        </form>                         
+                    </div>   
+                </div>               
+            </div>            
+        </div>        
+    <% } %>
 </body>
 <style>
     .location {
@@ -123,15 +143,19 @@
         color: orangered;
         
     }
+    .banner-page{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     
 </style>
 <% include ../partials/javascript %>
 <script>
-    
-    var total_page = '<%=total_page%>';
-    console.log(total_page);     
-    function search() {
 
+    var total_page = '<%=total_page%>';
+    function search() {
         $('#search_from').submit();
     }
 
@@ -161,7 +185,6 @@
         let current_page = parseInt($('#currentPage').val());
         $('#currentPage').val(current_page+1)
         $('#search_from').submit();       
-    }
-   
+    }   
 </script>
 </html>

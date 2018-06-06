@@ -15,6 +15,7 @@ const search = function(req, res, next)
         offset =  (parseInt(params.current_page)-1)*limit;
         current_page = parseInt(params.current_page);
     }
+    console.log(current_page)
 
     var keywordArray = parsingKeyword(keywords);
     let where = {};
@@ -35,7 +36,7 @@ const search = function(req, res, next)
         );
                 
     }
-    console.log(like_param)
+    console.log(current_page)
     where = {
         [Op.or]:like_param
     }   
@@ -105,8 +106,8 @@ const parsingKeyword = (params) => {
 }
 
 const home = function(req, res) {	 
-
-    res.render('pages/index', { data: [], keyword: '' });
+    let current_page = 1;
+    res.render('pages/index', { data: [], total_page:0,  keyword: '', current_page: current_page, pagination: [] });
 }
 module.exports = {
     home,
