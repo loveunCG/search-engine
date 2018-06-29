@@ -8,183 +8,196 @@
 
 <body>
     <% if(keyword !== ''){%>
-    <nav class="navbar navbar-expand">
-        <a class="navbar-brand" href="/"><img src="/images/animation.gif" class="mx-auto d-block" alt="Responsive image">  </a>      
-        <div class="collapse navbar-collapse">
-            <div class="col-sm-12">
-                <form class="form-inline" id="search_from" action="/search">
-                    <div class="input-group stylish-input-group col-12 col-md-8 col-xl-4">
-                        <input type="text" class="form-control form-control-lg" name="keyword" value="<%=keyword%>" placeholder="Search">
-                        <span class="input-group-addon">
+        <nav class="navbar navbar-expand">
+            <a class="navbar-brand" href="/"><img src="/images/animation.gif" class="mx-auto d-block" alt="Responsive image"> </a>
+            <div class="collapse navbar-collapse">
+                <div class="col-sm-12">
+                    <form class="form-inline" id="search_from" action="/search">
+                        <div class="input-group stylish-input-group col-12 col-md-8 col-xl-4">
+                            <input type="text" class="form-control form-control-lg" name="keyword" value="<%=keyword%>" placeholder="Search">
+                            <span class="input-group-addon">
                             <button type="button" onclick="search()" class="btn btn-lg">
                                 <i class="fas fa-search"></i>
                             </button>
                         </span>
-                    </div>                   
-                    <input type="hidden" name="current_page" value="<%=current_page%>" id="currentPage"/>
-                </form>
-            </div>
-        </div>
-    </nav>   
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-6 col-md-offset-1">
-                <div class="search-result">
-                    <ul class="list-group">
-                        <% if(data.length>0){ %>
-                            <% for (const key in data) { %>
-                                <li class="list-group-item">
-                                    <div class="result-title">
-                                        <h5>
-                                            <%=data[key]['title']%>
-                                        </h5>
-                                    </div>
-                                    <div class="url-result">
-                                        <a href="<%=data[key]['url']%>">
-                                            <%=data[key]['url']%> <i class="fas fa-caret-down"></i>
-                                        </a>
-                                    </div>
-                                    <div class="content-result">
-                                        <%=data[key]['property']%>
-                                    </div>
-                                    <div class="location">
-                                        <%=data[key]['location']%>
-                                    </div>
-                                </li>
-                            <% } %>
-                   
-                    </ul>
-                    <% } else{ %>             
-                        <div class="no-results note note-info">
-                           <h3 style="margin-top:1em">Suggestions:</h3>
-                           <ul class="" style="margin-left:1.3em;margin-bottom:2em"><li>Make sure that all words are spelled correctly.</li><li>Try different keywords.</li><li>Try more general keywords.</li></ul>
-                        </div>      
-                    <% } %>
-                </div>
-                <div class="page-nation">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item">
-                            <a class="page-link" onclick="previous()" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            </li>
-                            <% for (const key in pagination) { %>
-                                <li class="page-item<%=parseInt(pagination[key])==current_page?' active':''%>"><a class="page-link" onclick="pagination(<%=pagination[key]%>)"><%=pagination[key]%></a></li>
-                            <% } %>
-                            <li class="page-item">
-                            <a class="page-link" onclick="next()" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                            </li>
-                        </ul>
-                    </nav>
+                        </div>
+                        <input type="hidden" name="current_page" value="<%=current_page%>" id="currentPage" />
+                    </form>
                 </div>
             </div>
-        </div>
-    </div>
-    <% } else{%>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-md-offset-1">
+                    <div class="search-result">
+                        <ul class="list-group">
+                            <% if(data.length>0){ %>
+                                <% for (const key in data) { %>
+                                    <li class="list-group-item">
+                                        <div class="result-title">
+                                            <h5>
+                                                <%=data[key]['title']%>
+                                            </h5>
+                                        </div>
+                                        <div class="url-result">
+                                            <a href="<%=data[key]['url']%>">
+                                                <%=data[key]['url']%> <i class="fas fa-caret-down"></i>
+                                            </a>
+                                        </div>
+                                        <div class="content-result">
+                                            <%=data[key]['property']%>
+                                        </div>
+                                        <div class="location">
+                                            <%=data[key]['location']%>
+                                        </div>
+                                    </li>
+                                    <% } %>
 
-        <div class="banner-page ">
-            <div class="d-flex col-md-12 justify-content-center ">  
-                <div class="flex-column col-md-5">
-                    <div class="p-2 bd-highlight text-center" >
-                        <img src="/images/animation.gif" class="img-fluid mx-auto d-block" alt="Responsive image"> 
-                    </div>       
-                    
-                    <div class="p-2 bd-highlight ">
-                        <form class="form-inline" id="search_from" action="/search">                           
-                            <div class="form-group col-12">
-                                <input type="text" class="form-control col-12 form-control-lg" name="keyword" value="<%=keyword%>" placeholder="Search">
+                        </ul>
+                        <% } else{ %>
+                            <div class="no-results note note-info">
+                                <h3 style="margin-top:1em">Suggestions:</h3>
+                                <ul class="" style="margin-left:1.3em;margin-bottom:2em">
+                                    <li>Make sure that all words are spelled correctly.</li>
+                                    <li>Try different keywords.</li>
+                                    <li>Try more general keywords.</li>
+                                </ul>
                             </div>
-                            <input type="hidden" name="current_page" value="<%=current_page%>" id="currentPage"/>
-                        </form>                         
-                    </div>   
-                </div>               
-            </div>            
-        </div>        
-    <% } %>
+                            <% } %>
+                    </div>
+                    <div class="page-nation">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item">
+                                    <a class="page-link" onclick="previous()" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <% for (const key in pagination) { %>
+                                    <li class="page-item<%=parseInt(pagination[key])==current_page?' active':''%>">
+                                        <a class="page-link" onclick="pagination(<%=pagination[key]%>)">
+                                            <%=pagination[key]%>
+                                        </a>
+                                    </li>
+                                    <% } %>
+                                        <li class="page-item">
+                                            <a class="page-link" onclick="next()" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } else{%>
+            <div class="banner-page ">
+                <div class="d-flex col-md-12 justify-content-center ">
+                    <div class="flex-column col-md-5">
+                        <div class="p-2 bd-highlight text-center">
+                            <img src="/images/animation.gif" class="img-fluid mx-auto d-block" alt="Responsive image">
+                        </div>
+
+                        <div class="p-2 bd-highlight ">
+                            <form class="form-inline" id="search_from" action="/search">
+                                <div class="form-group col-md-12">
+                                    <input type="text" class="form-control col-10 form-control-lg" name="keyword" value="<%=keyword%>" placeholder="Search">
+                                    <span class="input-group-addon">
+                                        <button type="button" onclick="search()" class="btn btn-lg">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                                <input type="hidden" name="current_page" value="<%=current_page%>" id="currentPage" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
 </body>
 <style>
     .location {
         float: right;
     }
-    .result-title{
+    
+    .result-title {
         color: #609;
     }
-
-    .search-result{
+    
+    .search-result {
         margin-top: 60px;
         margin-left: 30px;
     }
-
-    .content-result{
+    
+    .content-result {
         color: #545454;
     }
- 
+    
     .list-group-item {
-        border: 0px solid rgba(0,0,0,.125);
+        border: 0px solid rgba(0, 0, 0, .125);
     }
-
-    .search-home{
+    
+    .search-home {
         height: 500px;
     }
-
-    .navbar-expand{
+    
+    .navbar-expand {
         background-color: #fafafa;
         padding: 20px;
     }
-
-    .no-results{
+    
+    .no-results {
         font-size: 2em;
         padding: 15px 30px;
         color: orangered;
-        
     }
-    .banner-page{
+    
+    .banner-page {
         height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    
 </style>
 <% include ../partials/javascript %>
-<script>
+    <script>
+        var total_page = '<%=total_page%>';
 
-    var total_page = '<%=total_page%>';
-    function search() {
-        $('#search_from').submit();
-    }
-
-    function pagination(page){
-        if(isNaN(page)){
-
-        }else{
-            $('#currentPage').val(page);
-            $('#search_from').submit();       
-        }        
-    }
-
-    function previous(){
-        if(isNaN($('#currentPage').val()) || parseInt($('#currentPage').val()) == 1){
-            return;
+        function search() {
+            $('#search_from').submit();
         }
-        let current_page = parseInt($('#currentPage').val());
-        $('#currentPage').val(current_page-1)
-        $('#search_from').submit();       
-    }
 
-    function next(){
-        console.log(parseInt($('#currentPage').val()), '-------', parseInt(total_page/15+1))
-        if(isNaN($('#currentPage').val()) || $('#currentPage').val() < 1 || parseInt($('#currentPage').val()) > parseInt(total_page/15)){
-            return;
+        function pagination(page) {
+            if (isNaN(page)) {
+
+            } else {
+                $('#currentPage').val(page);
+                $('#search_from').submit();
+            }
         }
-        let current_page = parseInt($('#currentPage').val());
-        $('#currentPage').val(current_page+1)
-        $('#search_from').submit();       
-    }   
-</script>
+
+        function previous() {
+            if (isNaN($('#currentPage').val()) || parseInt($('#currentPage').val()) == 1) {
+                return;
+            }
+            let current_page = parseInt($('#currentPage').val());
+            $('#currentPage').val(current_page - 1)
+            $('#search_from').submit();
+        }
+
+        function next() {
+            console.log(parseInt($('#currentPage').val()), '-------', parseInt(total_page / 15 + 1))
+            if (isNaN($('#currentPage').val()) || $('#currentPage').val() < 1 || parseInt($('#currentPage').val()) > parseInt(total_page / 15)) {
+                return;
+            }
+            let current_page = parseInt($('#currentPage').val());
+            $('#currentPage').val(current_page + 1)
+            $('#search_from').submit();
+        }
+    </script>
+
 </html>
